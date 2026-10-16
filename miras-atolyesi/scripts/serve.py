@@ -9,6 +9,14 @@ from build import build
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def log_message(self, format, *args):
+        try:
+            super().log_message(format, *args)
+        except (OSError, ValueError):
+            # A cloud command's log pipe can close while its server is retained.
+            # Logging must not interrupt the HTTP response in that case.
+            pass
+
     def end_headers(self):
         self.send_header('Cache-Control', 'no-cache')
         self.send_header('X-Content-Type-Options', 'nosniff')

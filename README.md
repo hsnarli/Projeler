@@ -14,4 +14,6 @@ Python 3.10+ yeterlidir; paket kurulumu gerekmez. Node.js varsa `npm start` da k
 
 **Özgün giriş ve giriş sonrası görselleri henüz eklenmemiştir.** Alternatif karakter veya sahne tasarımı kullanılmaz. İki orijinal görsel dosyası gereklidir; [bağlama yönergeleri](miras-atolyesi/assets/README.md).
 
+Güncel sürümde isim ve yanıt geri bildirimleri ortadaki pencerelerde açılır. Büyük parşömende sorular, sağ üstte ilham telleri bulunur. Noktalama sorusunda yalnızca iki kutu düzenlenebilir; yaratıcı dize tek satırdır. Finalde Tekrar Oyna bulunur. Oyunun içinde indirme, ayar veya ses düğmesi yoktur. Türkçe kök/ek ve uygunsuz ifade denetimleri çevrimdışı çalışır.
+
 [ZIP paketini indir](downloads/miras-atolyesi.zip) · [Test sonuçları](miras-atolyesi/docs/TEST-SONUCLARI.md)

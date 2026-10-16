@@ -1,4 +1,5 @@
 import { ORIGINAL_POEM, REFLECTIONS } from './content.js';
+import { hasProfanity, looksRandom, validateWriting } from './text-guard.js';
 
 export const normalize = (text) => String(text).normalize('NFC').toLocaleLowerCase('tr-TR');
 const words = (text) => normalize(text).match(/\p{L}+/gu) || [];
@@ -13,6 +14,7 @@ export function validateName(value) {
   if (name.length < 2 || name.length > 30 || !/^[\p{L}][\p{L}\s’'.-]*$/u.test(name)) {
     return invalid('Sana nasıl seslenelim? 2–30 karakterlik bir ad ya da takma ad yaz.');
   }
+  if (hasProfanity(name) || words(name).some(looksRandom)) return invalid('Sana uygun bir ad veya takma ad seçelim. Rastgele harfler ve uygun olmayan sözcükler kullanma.');
   return { ok: true, name };
 }
 
@@ -38,6 +40,9 @@ export function validateStep(step, value, playerName = '') {
     return valid();
   }
   if (step === 1 || step === 2) {
+    if (text.length > 120) return invalid('Dizeni en fazla 120 karakterle, tek satırda tamamlamayı dene.');
+    const writing = validateWriting(value, playerName);
+    if (!writing.ok) return writing;
     if (!hasTheme(text)) return invalid('Dizeni yeniden oku: İçinde “ışık” veya “güneş” sözcüklerinden biri yer almalı.');
     if (wordCount(text) < 4) return invalid('Düşünceni biraz açabilir misin? En az dört sözcükle bir dize oluşturmayı dene.');
     if (step === 2) {
@@ -48,6 +53,9 @@ export function validateStep(step, value, playerName = '') {
     return valid();
   }
   if (step === 3) {
+    if (text.length > 160) return invalid('Veda cümleni en fazla 160 karakterle tamamlamayı dene.');
+    const writing = validateWriting(value, playerName);
+    if (!writing.ok) return writing;
     const textWords = words(text);
     const nameWords = words(playerName);
     const nameAppears = nameWords.length > 0 && textWords.some((_, i) => nameWords.every((word, j) => textWords[i + j] === word));

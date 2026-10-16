@@ -12,7 +12,7 @@
   </head>
   <body>
     <main class="game-shell">
-      <section class="stage" id="stage" aria-label="Miras Atölyesi oyun alanı">
+      <section class="stage" id="stage" data-screen="intro" aria-label="Miras Atölyesi oyun alanı">
         <div class="artwork" aria-hidden="true">
           <div class="scene-fallback">
             <div class="fallback-paper"></div>
@@ -21,14 +21,16 @@
           <img id="game-art" class="scene-image" alt="" hidden>
         </div>
 
-        <button id="play-hotspot" class="play-hotspot" type="button" aria-label="Oyuna başla"><span aria-hidden="true">▶</span> OYNA</button>
+        <button id="play-hotspot" class="image-hotspot play-hotspot" type="button" aria-label="Oyna"><span>OYNA</span></button>
+        <button id="continue-hotspot" class="image-hotspot continue-hotspot" type="button" aria-label="Devam et"><span>DEVAM ET</span></button>
+        <aside id="inspiration" class="inspiration" aria-label="İlham çubuğu" hidden></aside>
 
-        <section class="parchment" id="parchment" aria-label="Oyun metni ve yanıt alanı" tabindex="-1">
+        <section class="parchment" id="parchment" aria-label="Oyun metni ve yanıt alanı" tabindex="-1" hidden>
           <div id="panel" class="panel"></div>
         </section>
       </section>
-      <footer class="shell-footer"><span>MİRAS ATÖLYESİ <i>·</i> TELDEKİ SEVDA</span><span>Bir türkü de sen yaz.</span></footer>
     </main>
+    <dialog id="game-dialog" class="game-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-message"></dialog>
     <noscript>Bu etkileşimli oyun için tarayıcınızda JavaScript'i etkinleştirin.</noscript>
   </body>
 </html>

@@ -18,7 +18,7 @@ export const STEPS = [
   {
     title: "Ozan’ın defteri",
     skill: 'Yazım ve noktalama',
-    prompt: 'Evlat, defterimde iki işaret eksik. İkinci dizede Anadolu adına gelen eki ayır; üçüncü dizedeki “ah” sözünden sonra virgül ya da ünlem kullan. Sözcükleri koruyarak metni düzelt.',
+    prompt: 'Evlat, defterimde iki işaret eksik. Anadolu ile “m” arasındaki ve “ah”tan sonraki kutulara dokun. Uygun işareti seç veya klavyeden yaz.',
     label: 'Dörtlükteki eksik işaretleri tamamla',
     hint: 'Özel ada gelen iyelik eki kesme işaretiyle ayrılır. Duygu bildiren “ah” sözünden sonra virgül veya ünlem kullanılabilir.',
     success: 'Kesme işareti ve “ah”tan sonraki işaret yerini buldu. İlk telimiz ses verdi!',
@@ -26,7 +26,7 @@ export const STEPS = [
   {
     title: 'Türküye bir dize kat',
     skill: 'Yaratıcı yazma',
-    prompt: '“Mermerleri yonttuk, kemerler kurduk, / Renkleri suyun üzerinde bulduk…” Şimdi sen de içinde “ışık” veya “güneş” geçen, sanatı öven özgün bir dize yaz.',
+    prompt: '“Mermerleri yonttuk, kemerler kurduk, / Renkleri suyun üzerinde bulduk…” Şimdi sen de içinde “ışık” veya “güneş” geçen, sanatı öven özgün bir dize yaz. Yalnızca tek satır kullan.',
     label: 'Senin özgün dizen',
     hint: 'Sanatın hayatımıza kattığı güzelliği düşün. Dizen, önceki dizelerin “-duk” sesine uyabilir; kafiye bir öneridir.',
     success: 'İstenen sözcük dizende yerini buldu. Şimdi yazdığını birlikte gözden geçirelim.',
@@ -50,7 +50,7 @@ export const STEPS = [
   {
     title: 'Bu yolculuk sana ne öğretti?',
     skill: 'Kendini değerlendirme',
-    prompt: 'Bu türküyü birlikte yazdık. Kendi yazdığın kısımları düşündüğünde en çok hangi konuda zorlandın? Sana en yakın seçeneği işaretle. Burada yanlış cevap yok.',
+    prompt: 'Türküyü yazarken en çok hangi konuda zorlandın? Kendine en yakın seçeneği işaretle. Burada yanlış cevap yok.',
     label: 'Yazma deneyimini en iyi anlatan seçeneği seç',
     hint: 'Kendini değerlendirmen, bir sonraki yazında neye dikkat edeceğini keşfetmene yardımcı olur. Her seçenek değerlidir.',
     success: 'Deneyimini düşündün ve kendini ifade ettin. Son tel de titreşti; türkümüz tamamlandı!',

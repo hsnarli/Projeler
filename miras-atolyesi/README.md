@@ -1,66 +1,71 @@
 # Miras Atölyesi · Teldeki Sevda
 
-7. sınıf Türkçe için, paylaşılan **Miras Atölyesi 4. Bölüm: Teldeki Sevda (Final)** senaryosuna dayalı tarayıcı oyunu.
+Paylaşılan 7. sınıf Türkçe senaryosundaki beş aşamalı yazma oyunu. Mevcut oyun kaynakları geliştirilmiştir; yeni bir proje veya farklı sanat tasarımı oluşturulmamıştır.
 
 ## Çalıştırma
 
-Python 3.10 veya üzeri yeterlidir. Oyun için paket kurulumu, veritabanı, API anahtarı ve internet bağlantısı gerekmez.
+Depo veya ZIP'in ana klasöründe:
 
 ```sh
-cd /workspace/Projeler/miras-atolyesi
-python3 scripts/serve.py
+python3 miras-atolyesi/scripts/serve.py
 ```
 
-Sunucu varsayılan olarak `4173` portunu kullanır. Başka port için `python3 scripts/serve.py --port 8080` çalıştırılabilir. Sunucuyu `Ctrl+C` ile durdurabilirsiniz. Yerel bilgisayarda tarayıcıdan bu porttaki sunucuyu açın. Sunucu, başlangıçta güncel kaynaklardan `index.html` çıktısını yeniler. Çalıştırma komutu herhangi bir çalışma dizininden tam dosya yoluyla da kullanılabilir.
+Python 3.10+ yeterlidir. Oyun için paket kurulumu, veritabanı, gizli anahtar veya internet gerekmez. Varsayılan port **4173**, bağlama **0.0.0.0**'dır. Başka port: `--port 8080`. `--host` / `--bind` seçeneği ve `PORT` değişkeni desteklenir. Windows'ta gerekirse `python3` yerine `py` kullanın. Sunucuyu Ctrl+C ile durdurabilirsiniz.
 
-Önizlemede açılacak dosya **index.html** dosyasıdır. CSS, JavaScript ve tanımlanmış özgün görseller bu dosyanın içine gömülür. Böylece alt klasör, dosya taşıma ve yalnızca HTML gösteren önizlemelerde CSS/JS yolu nedeniyle düz metin görünümü oluşmaz. `index.template.html` ise çok dosyalı kaynak şablonudur. Kaynakları değiştirdikten sonra `python3 scripts/build.py` çalıştırın veya sunucuyu yeniden başlatın. Depo kökündeki eş kopyayı yenilemek için depo kökünden `npm run build` kullanılabilir.
-
-Üretilmiş HTML'nin harici kaynak gereksinimi yoktur. Yönetilen tarayıcılar yerel `file://` açmayı engelleyebilir; doğrulanmış çalıştırma yolu yukarıdaki HTTP sunucusudur.
-
-Node.js varsa `npm start` da aynı sunucuyu çalıştırır. `npm install` gerekli değildir. Windows'ta Python komutu `python3` yerine `py` ise `py scripts/serve.py` kullanılabilir. Oyun standart JavaScript, HTML ve CSS kullanır; masaüstü ve mobil tarayıcılarda çalışır.
-
-## Özgün görsellerin durumu
-
-**Giriş ve oyun arka planı dosyaları henüz çalışma alanına ulaşmadı.** Sohbette görüntülenen görselin indirilebilir dosyası bulunmuyor. Özgün Mimar Kalfası, Hayalî Usta, Halk Ozanı, Çırak ve Ebruzen sahnesinin yerine başka bir görsel veya karakter çizilmez. Eksik görseller açıkça parşömen içinde bildirilir; üst sahne nötr bırakılır. Dosyalar geldiğinde [görsel yönergelerine](assets/README.md) göre bağlanmalıdır; görsel içeriğin son doğrulaması bu dosyalarla yapılmalıdır.
-
-`assets/images.json` iki ayrı görsel tanımlar: `intro` girişte, `game` Oyna düğmesinden sonra kullanılır. Soru, cevap, uyarı, ayar ve ilham göstergesi yalnızca alttaki parşömen alanında görüntülenir. Üst sahneye metin penceresi açılmaz. Uzun metinlerde parşömenin içi kayar. Küçük ekranlarda sahne oranı korunur, parşömen aşağı doğru uzar.
-
-## Oyun akışı
-
-1. Çırak adını veya takma adını yazar. Oyna, ad girildikten sonra ilk görevi açar.
-2. Ozanın dörtlüğünde `Anadolu'm` ve `ah,` / `ah!` işaretleri tamamlanır. Dört dizenin sözcükleri korunur.
-3. Oyuncu `ışık` veya `güneş` geçen kendi dizesini yazar. En az dört sözcük istenir; çekimli sözcükler de tanınır.
-4. Oyuncunun **kendi yazdığı dize**, değiştirilmeden öz yansıtma adımına getirilir. Büyük başlangıç harfi ve cümle sonu işareti kontrol edilir. Zaten doğru bir dizeyi değiştirmek gerekmez.
-5. Oyuncu kendi adını ve ustaların emeğini içeren bir veda cümlesi yazar. Ustalara topluca seslenilebilir veya üçü de adıyla anılabilir.
-6. Üç öz değerlendirme seçeneğinden biri seçilir. Hiçbir seçeneğin yanlış karşılığı yoktur.
-7. Beş ilham teli dolduğunda final açılır; tamamlanan türkü UTF-8 metin dosyası olarak indirilebilir.
-
-Denetimler metindeki yazım kuralları ve anahtar sözcükler içindir. Dizelerin sanatsal niteliğini veya anlamını otomatik puanlama iddiası yoktur. Kafiye önerilir, zorunlu tutulmaz. Geri bildirimler yeniden düşünmeyi ve düzeltmeyi destekler.
-
-## Kullanım ve erişilebilirlik
-
-İlerleme ve yanıtlar yalnızca kullanılan tarayıcının `localStorage` alanına kaydedilir; başka bir yere gönderilmez. Kaydetme kapalıysa oyun çalışmayı sürdürür ve bir uyarı gösterir. Ayarlardan çıkış yapmak yanıtları korur; yeniden başlamak ise parşömen içinde ayrıca onay gerektirir. Paylaşılan bir cihazda sonraki öğrenci için **Yeniden başla** seçilmelidir.
-
-Girdilerin etiketleri, klavyeyle erişilen düğmeler, canlı geri bildirim alanı ve azaltılmış hareket desteği bulunur. Ayarlardan metin büyütülebilir. Kısa, yerel olarak sentezlenen tel melodileri isteğe bağlıdır ve başlangıçta kapalıdır. Gerçek bağlama kaydı kullanılmamıştır. Uygulama ekranın üzerine taşan sistem pencereleri açmaz.
-
-## Doğrulama
-
-İş kuralları Node.js'in yerleşik test aracıyla sınanır; harici npm bağımlılığı yoktur:
+Sunucu başlangıçta kaynaklardan **index.html** üretir. CSS, JavaScript, Türkçe sözcük kökleri ve mevcut özgün görseller bu HTML içine gömülür. Çok dosyalı kaynak şablonu `index.template.html` dosyasıdır. Kaynak değişikliklerinden sonra sunucuyu yeniden başlatın veya depo kökünde şu komutu çalıştırın:
 
 ```sh
-node --test tests/*.test.js
+python3 miras-atolyesi/scripts/build.py --repo-entry
 ```
 
-İsteğe bağlı gerçek tarayıcı testi, Python Playwright paketi ve Chromium gerektirir. Bir terminalde oyun sunucusunu başlatın, diğerinde çalıştırın:
+Bu komut oyun klasörü ve depo kökündeki önizleme HTML'lerini birlikte yeniler. Node.js varsa `npm start`, `npm run build` ve `npm test` eşdeğer kısa yollardır; `npm install` gerekmez.
+
+## Görseller
+
+Özgün **giris.png** ve **giris_sonrasi.png** dosyalarını `miras-atolyesi/assets/` klasörüne koyun. Bu adlar otomatik bulunur. Ardından yeniden derleyin veya sunucuyu yeniden başlatın. Farklı uzantılar/adlar için [görsel yönergelerine](assets/README.md) bakın.
+
+**Şu anda indirilebilir özgün PNG dosyaları çalışma alanında yoktur.** Sohbetteki yeni görsellerin 1672 × 941 oranı ve büyütülen parşömen sınırları yerleşimde dikkate alınmıştır. Orijinal dosyalar yerine farklı karakter veya sahne çizilmemiştir. Gerçek dosyalar eklenene kadar üst sahne nötr görünür; son görsel doğrulama bekler.
+
+## Güncel akış
+
+1. Girişte yalnızca özgün görsel görünür. Görseldeki **Oyna** veya **Devam Et** alanı isim penceresini açar; alttaki hazır metnin üzerine yeni HTML metni eklenmez.
+2. İsim, ekranın ortasındaki pencerede yazılır. **Başla** ile ilk soruya geçilir. Mevcut oyuncunun ilerlemesi korunur; farklı bir adla başlanırsa yeni oyun açılır.
+3. İlk soruda dört dize sabittir. Yalnızca **Anadolu / m** arasındaki ve **ah** sonrasındaki iki kutu düzenlenebilir. Kutudan işaret seçilebilir veya klavyeyle tek işaret girilebilir. Ok tuşları ve Enter da seçenekleri kullanır.
+4. Oyuncu **ışık** veya **güneş** geçen özgün dizesini **tek satırlık** alanda yazar. Birden çok satır yapıştırılamaz. Dize en fazla 120 karakterdir.
+5. Öz yansıtmada aynı dize aynen geri gelir. Büyük başlangıç harfi ve son noktalama işareti kontrol edilir; zaten doğru metni değiştirmek gerekmez.
+6. En fazla 160 karakterlik veda cümlesinde oyuncunun adı ve ustaların emeği bulunur.
+7. Öz değerlendirmede üç seçeneğin tamamı kabul edilir; yanlış cevap yoktur.
+8. Yanıt geri bildirimleri ortadaki animasyonlu pencerede gösterilir. **Tekrar Dene** yanıtı korur; **Devam Et** sonraki aşamaya geçer. Finalde yalnızca **Tekrar Oyna** düğmesi vardır; türkü indirme seçeneği kaldırılmıştır.
+
+İlham telleri parşömende değil, görselin sağ üstündedir. Başarıyla dolan beş nota ışıldar ve kısa bir hareket yapar. Parşömende ayar veya ses düğmesi bulunmaz. Hafif tel sesleri yalnızca kullanıcı etkileşiminden sonra çalınır.
+
+## Duyarlı yerleşim ve erişilebilirlik
+
+Sahne kırpılmaz. Geniş ekranlarda sorular yeni parşömenin güvenli iç alanına yerleşir. Tablet/telefon ekranlarında parşömen aşağı doğru uzar, içerik okunur boyutta kalır. Yatay sayfa taşması engellenir. İsim/uyarı pencereleri ekranın ortasında kalır; küçük ekran ve sanal klavye için azami yükseklikleri sınırlıdır, gerektiğinde kendi içlerinde kayarlar. Klavyeyle erişim, alan etiketleri, yerel dialog odak yönetimi ve azaltılmış hareket tercihi desteklenir.
+
+İlerleme yalnızca bu tarayıcıdaki localStorage alanında tutulur. Girdiler sunucuya veya harici hizmete gönderilmez. Depolama kapalıysa oyun çalışır ve kayıt uyarısı gösterilir.
+
+## Metin denetimi
+
+`asdfasf`, `rrepj` gibi tuş dizileri, tanınmayan sözcükler, uygunsuz ifadeler ve bazı harf/rakam/ayraç gizlemeleri denetlenir. Türkçe sözcük kökleri ve yaygın ekler çevrimdışı kontrol edilir. Oyuncunun kendi adı ayrıca kabul edilir. **Işık, şık, sıkıntı, götürdü** gibi normal sözcükleri yanlışlıkla engellememek için regresyon testleri vardır.
+
+Bu denetim cümlenin anlamını veya edebî niteliğini değerlendiren bir yapay zekâ değildir. Tam Türkçe biçimbilim çözümlemesi de değildir; nadir, yöresel veya yeni türetilen doğru sözcükleri tanımayabilir. Böyle bir durumda oyun yazımı kontrol etmeyi veya başka sözcük seçmeyi önerir. Sözcük kökleri Apache-2.0 lisanslı Zemberek sözlüğünden türetilmiştir; [kaynak ve değişiklik bildirimi](licenses/ZEMBEREK-NOTICE.md).
+
+## Test ve paketleme
+
+Depo kökünde:
 
 ```sh
-python3 tests/browser_smoke.py
+node --test miras-atolyesi/tests/*.test.js
+python3 miras-atolyesi/tests/server_smoke.py
 ```
 
-Sistem Chromium'u otomatik bulunur; gerekirse `--browser /tarayicinin/yolu` veya farklı sunucu için `--base-url` verilebilir. Test, masaüstü ve telefonda beş aşamayı baştan sona tamamlar; geri bildirimleri, sayfa yenilemede devam etmeyi, indirmeyi, ayarları ve sıfırlamayı denetler. Ek olarak altı ekran boyutunda parşömenin üst sahneye taşmadığını, iki görsel arasındaki geçişi sentetik test görselleriyle ve bozuk/kullanılamayan tarayıcı depolamasını kontrol eder. Tüm harici kaynaklar engellenerek CSS/JS'nin önizlemede yine de çalıştığı ayrıca sınanır. Özgün görseller eklenene kadar bu testler onların görsel doğruluğunu kanıtlamaz.
+Sunucu çalışırken, isteğe bağlı Playwright/Chromium testleri:
 
-Kural ve paketleme testleri toplam 24 testtir. [Test raporu](docs/TEST-SONUCLARI.md), gerçek sonuçları ve eksik görseller nedeniyle bekleyen kontrolleri ayırır.
+```sh
+python3 miras-atolyesi/tests/browser_smoke.py
+```
 
-## ZIP paketi
+Sistem Chromium'u otomatik bulunur. Gerekirse `--browser` ve `--base-url` verilebilir. Güncel [test raporu](docs/TEST-SONUCLARI.md), gerçek görsellerle bekleyen doğrulamayı teknik sonuçlardan ayırır.
 
-Depo kökünde `python3 miras-atolyesi/scripts/package.py` çalıştırılır. Paket `downloads/miras-atolyesi.zip` konumuna yazılır. Kaynak kodlar, tek dosyalık HTML, çalıştırıcılar, belgeler ve testler dahil edilir. Git metaverisi ve önbellekler dahil edilmez. Her dosya arşivden geri okunarak kaynakla karşılaştırılır ve ZIP CRC kontrolü yapılır. Paketi çıkardıktan sonra üst klasördeki README yönergesini izleyin.
+ZIP'i yenilemek için `python3 miras-atolyesi/scripts/package.py` çalıştırın. `downloads/miras-atolyesi.zip` kaynakları, tek dosyalık HTML'yi, belgeleri, lisansları ve testleri içerir. Git metaverisi ve önbellekler dahil edilmez; her ZIP üyesi kaynakla karşılaştırılır ve CRC kontrolü yapılır.

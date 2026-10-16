@@ -1,61 +1,62 @@
 # Doğrulama sonuçları — 16 Ekim 2026
 
-Bu rapor mevcut oyun kaynaklarının düzeltilmiş sürümüne aittir. Giriş ve giriş sonrası özgün görselleri bulunmadığından **karakterlerin ve özgün sahnenin son görsel onayı beklemektedir**. Bu eksik, başarıyla tamamlanan teknik kontrollerden ayrıdır.
+Bu rapor büyük parşömen, isim penceresi, ortadaki geri bildirimler, sağ üst ilham telleri ve sabit noktalama alanları eklenen sürüme aittir. Beş aşamalı oyun ve mevcut kod tabanı korunarak geliştirilmiştir.
+
+**Özgün dosyalarla görsel onay bekliyor:** son iki görsel sohbette görülüyor, ancak indirilebilir `giris.png` ve `giris_sonrasi.png` dosyaları çalışma alanında veya GitHub deposunda bulunmuyor. Alternatif görsel üretilmedi. Yeni görüntünün 1672 × 941 oranı ve yaklaşık %64,6'da başlayan geniş parşömen alanı kullanıldı. Sentetik test görselleri yalnızca yükleme/geçiş mekanizmasını doğrular; özgün sanatın son görünümünü kanıtlamaz.
 
 | Kontrol | Sonuç |
 | --- | --- |
-| Önceki beş aşamanın içeriği ve doğrulama kuralları | Dosya SHA-256 karşılaştırmasında değişmedi |
-| HTML, CSS, JavaScript ve görsel tanımlarının denetimi | Tamamlandı; özgün iki görsel yok, `intro` ve `game` null |
-| Kaynak ve depo kökündeki HTML erişimi | HTTP 200; doğru HTML içeriği |
-| Üretilen HTML'nin harici CSS/JS kaynağı gereksinimi | Yok; CSS ve kod gömülü |
-| Kural ve paketleme testleri | **24 geçti, 0 başarısız, 0 atlandı** |
-| Masaüstü 1440 × 1000 | Beş aşama baştan sona geçti |
-| Telefon 390 × 844 | Beş aşama baştan sona geçti |
-| Ek boyutlar 1280 × 720, 768 × 1024, 844 × 390, 320 × 568 | Yatay taşma yok; parşömen üst sahneyi kapatmıyor |
-| Tüm harici istekler engellenmiş önizleme | CSS, parşömen, giriş ve görev doğrulaması çalıştı |
-| Farklı bir önizleme alt yolunda gömülü görsel geçişi | Sentetik test görselleriyle giriş → oyun geçişi geçti |
-| Çok dosyalı kaynak şablonunda görsel yolları | Sentetik test görselleriyle giriş → oyun → giriş geçişi geçti |
-| Öğrencinin kendi dizesinin öz yansıtma adımına taşınması | İlk metin aynen korundu; düzeltme ayrı yanıtta tutuldu |
-| Yanlış/eksik girişlere geri bildirim | Beklenen uyarılar gösterildi |
-| Öz değerlendirme | Üç seçeneğin tamamı kabul edildi; yanlış cevap yok |
-| Yenileme, çıkış ve kaldığı yerden devam | Yanıtlar ve aşama korundu |
-| Türküyü indirme | İndirilen UTF-8 metindeki öğrenci dizesi ve final doğrulandı |
-| Ayarlar ve yeniden başlatma | Ses/metin ayarı ve parşömen içindeki onay çalıştı |
-| Bozuk/kullanılamayan localStorage | Oyun çalışmayı sürdürdü; uygun kayıt uyarısı gösterildi |
-| ZIP bütünlüğü | CRC kontrolü ve kaynak dosyalarla bayt karşılaştırması yapıldı |
-| İsteğe bağlı doğrudan `file://` testi | **Atlandı:** yönetilen tarayıcı `ERR_BLOCKED_BY_ADMINISTRATOR` ile yerel dosya açmayı engelliyor |
-| Özgün karakterler, sahne ve gerçek parşömen hizası | **Bekliyor:** `giris` ve `giris_sonrasi` dosyaları gerekli |
+| Kural, metin denetimi ve paketleme testleri | **32 geçti, 0 başarısız, 0 atlandı** |
+| Masaüstü 1440 × 1000 | Beş aşama ve final tamamlandı |
+| Telefon 390 × 844 | Beş aşama ve final tamamlandı |
+| Duyarlı yerleşim | 1920 × 1080, 1440 × 1000, 1280 × 720, 1024 × 768, 844 × 390, 768 × 1024, 390 × 844, 320 × 568 |
+| Parşömen sınırları | İçerik üst sahneyi kapatmıyor; sayfa/parşömende yatay taşma yok; geniş ekranlarda normal içerik kağıda sığıyor |
+| Girişte ek yazı | Parşömen formu ve ilham göstergesi gizli; iki görsel düğme isim penceresini açıyor |
+| İsim ve geri bildirim pencereleri | Sekiz boyutta ortalanmış ve ekran sınırları içinde; animasyon bitişi de denetlendi |
+| Oyna / Devam Et girişleri | İkisi de isim penceresini açtı; geçerli isimle oyun başladı |
+| Noktalama sorusu | Serbest metin alanı yok; yalnızca iki kutu, seçenek menüsü ve klavye girişi var |
+| Klavyeyle seçim | Odak, aşağı ok ve Enter ile işaret seçildi; doğrudan ünlem de girildi |
+| Yanlış yanıt | Ortada Tekrar Dene penceresi açıldı; yanıt ve aşama korundu |
+| Doğru yanıt | İlham notası doldu; Devam Et ile sonraki aşama açıldı |
+| Özgün dize | Tek satırlık input; çok satırlı yapıştırma engellendi; uzunluk sınırı doğrulandı |
+| Rastgele harfler | asdfasf, rrepj ve benzer girdiler engellendi |
+| Uygunsuz sözler | Normal, çekimli ve bazı harf/rakam/ayraç gizlemeleri denetlendi |
+| Yanlış pozitifler | ışık, şık, sıkıntımı, götürdü, amca, boks gibi normal sözcükler kabul edildi |
+| Türkçe kökler ve ekler | Yaygın yaratıcı dizeler ve çekimler kabul edildi; öğrenci adı sözlükte olmasa da kullanılabildi |
+| Öz yansıtma | Öğrencinin kendi dizesi aynen taşındı; büyük harf ve son işaret ayrı ayrı kontrol edildi |
+| Öz değerlendirme | Üç seçeneğin tamamı geçerli; yanlış cevap yok |
+| Final | İndir/ayar/ses düğmeleri yok; Tekrar Oyna yeni isim penceresini açıyor |
+| Kayıt | Yenileme sonrası devam ve bozuk/kullanılamayan localStorage denetlendi |
+| Taşınabilir HTML | Bütün harici kaynaklar engellendiğinde biçimli arayüz ve oyun çalıştı |
+| Görsel yolları | Gömülü HTML ve modül kaynak şablonunda sentetik görsellerle giriş/oyun geçişi geçti |
+| Standart PNG adları | Dosyalar JSON düzenlemeden bulundu, değiştirilmeden gömüldü |
+| Ayrılmış sunucu günlük kanalı | Günlük okuyucusu kapalıyken HTTP yanıtı ve gömülü kaynaklar çalıştı |
 
-## Yapılan düzeltme
+## Kapsam ve sınırlar
 
-Mevcut oyun yeniden yazılmadı. Dosyalar `miras-atolyesi/` altına taşındı. Önceki `src/content.js`, `src/rules.js` ve kural testleri bayt düzeyinde aynı kaldı. `src/game.js` içindeki görsel yükleme yolu ve eksik kaynak bildirimi düzeltildi. Önceki geçici sahne çizimleri kaldırıldı; özgün görsellerin yerine yeni çizim kullanılmıyor. Parşömen yerleşimi korunuyor.
+Türkçe kök/ek kontrolü çevrimdışıdır. Zemberek'in kök sözlüğünden türetilen liste ve sınırlı ek kontrolü kullanılır; tam Zemberek çözümleyicisi çalıştırılmaz. Nadir veya yeni türetilen sözcükler tanınmayabilir. Bu sistem bir cümlenin anlamını veya edebî niteliğini puanlamaz. Uygunsuz ifade filtresi de kapsamı sınırlı yerel kurallar içerir. Girdiler harici bir servise gönderilmez.
 
-`scripts/build.py`, mevcut HTML şablonu, CSS ve JavaScript modüllerinden tek dosyalık `index.html` üretir. Tanımlanmış özgün görseller, dosyanın baytları değiştirilmeden gömülür. Böylece yalnızca HTML'yi taşıyan veya farklı bir alt yoldan sunan önizlemeler, CSS ve JS'yi ayrıca bulmak zorunda kalmaz. Eksik bir dosya adı tanımlanırsa derleme açık bir hata ile durur.
+Yönetilen tarayıcının önceki `file://` engeli devam eden bir platform kısıtıdır. Bu sürüm HTTP üzerinden test edilmiştir; kısıt aşılmamıştır.
 
-Test edilen HTTP sunucusunda eski CSS/JS yolları başlangıçta da 200 yanıtı veriyordu. Kullanıcının sağ panelindeki sayfanın önceki ağ kayıtlarına erişilemediğinden, o paneldeki eski hatanın kesin HTTP yanıtı belirlenemedi. Tek dosyalık çıktı, harici CSS/JS engellenerek ayrıca doğrulandı.
-
-## Yeniden çalıştırma
+## Komutlar
 
 Depo kökünde:
 
 ```sh
 python3 miras-atolyesi/scripts/build.py --repo-entry
 node --test miras-atolyesi/tests/*.test.js
+python3 miras-atolyesi/tests/server_smoke.py
 python3 miras-atolyesi/scripts/serve.py
 ```
 
-Ayrı terminalde:
+Ayrı terminalde `python3 miras-atolyesi/tests/browser_smoke.py` çalıştırılır. Farklı sunucu/port için `--base-url` verilir.
 
-```sh
-python3 miras-atolyesi/tests/browser_smoke.py
-```
+## Ekran görüntüleri
 
-Çok dosyalı kaynak şablonu aynı sunucudan erişilebilir olmalıdır. Oyun deposu başka bir HTTP sunucusunun alt klasöründe sunuluyorsa `--base-url` sonuna oyun klasörünün yolunu da ekleyin.
+Özgün dosyalar henüz erişilebilir olmadığı için aşağıdaki görüntülerde üst sahne nötrdür. Görüntüler yeni parşömen, ilham telleri, noktalama kutuları ve ortadaki pencerelerin teknik yerleşimini gösterir.
 
-## Görsel kanıtlar
+![Masaüstü](validation/desktop.png)
 
-Aşağıdaki ekran görüntülerinde özgün görsel bulunmadığı için üst sahne nötrdür. Bunlar özgün sanat tasarımının tamamlandığını göstermez; parşömenin ve oyun kontrollerinin biçimli görüntülendiğini gösterir.
+![Telefon](validation/mobile.png)
 
-![Masaüstünde parşömen ve ilk görev](validation/desktop.png)
-
-![Telefonda parşömen ve ilk görev](validation/mobile.png)
+![Ortadaki geri bildirim penceresi](validation/popup.png)

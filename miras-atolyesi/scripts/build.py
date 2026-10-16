@@ -12,7 +12,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-MODULES = ('src/content.js', 'src/rules.js', 'src/game.js')
+MODULES = ('src/lexicon.js', 'src/text-guard.js', 'src/content.js', 'src/rules.js', 'src/game.js')
 IMPORT = re.compile(r"^import \{ ([\w, ]+) \} from '(\./[\w.-]+\.js)';$", re.MULTILINE)
 IMAGE_NAME = re.compile(r'[\w .-]+\.(png|jpe?g|webp)', re.IGNORECASE)
 
@@ -46,6 +46,9 @@ def pack_images(root):
     missing = []
     for key in ('intro', 'game'):
         filename = manifest[key]
+        standard_name = 'giris.png' if key == 'intro' else 'giris_sonrasi.png'
+        if filename is None and (asset_root / standard_name).is_file():
+            filename = standard_name
         if filename is None:
             packed[key] = None
             missing.append(key)
