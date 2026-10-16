@@ -1,0 +1,10 @@
+{
+  "name": "projeler",
+  "private": true,
+  "scripts": {
+    "start": "python3 miras-atolyesi/scripts/serve.py",
+    "dev": "python3 miras-atolyesi/scripts/serve.py",
+    "build": "python3 miras-atolyesi/scripts/build.py --repo-entry",
+    "test": "node --test miras-atolyesi/tests/*.test.js"
+  }
+}

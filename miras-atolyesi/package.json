@@ -1,0 +1,12 @@
+{
+  "name": "miras-atolyesi-teldeki-sevda",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "start": "python3 scripts/serve.py",
+    "dev": "python3 scripts/serve.py",
+    "test": "node --test tests/*.test.js"
+  }
+}
